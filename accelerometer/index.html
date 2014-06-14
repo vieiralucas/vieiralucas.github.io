@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Pong</title>
+	<style type="text/css">
+		canvas {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			border: solid;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="h1"></h1>
+	<canvas id="canvas"></canvas>
+
+	<script type="text/javascript">
+		window.onload = function() {
+
+			var canvas = document.getElementById("canvas");
+			canvas.width = 320;
+			canvas.height = 480;
+			var ctx = canvas.getContext("2d");
+			var h1 = document.getElementById("h1");
+
+			var ball = {
+				x: canvas.width / 2,
+				y: canvas.height / 2,
+				r: 20,
+				vx : 0,
+				vy: 0,
+
+				update: function() {
+					this.x += this.vx;
+					this.y += this.vy;
+					h1.innerHTML = this.x +" - "+ this.y;
+					if(this.x - this.r < 0) {
+						h1.innerHTML = this.x +" -1- "+ this.y;
+						this.x = this.r;
+						this.vx *= -1;
+					}
+					if(this.x + this.r > canvas.width) {
+						h1.innerHTML = this.x +" -2- "+ this.y;
+						this.x = canvas.width - this.r;
+						this.vx *= -1;
+					}
+					if(this.y - this.r < 0) {
+						h1.innerHTML = this.x +" -3- "+ this.y;
+						this.y = this.r + 10;
+						this.vy *= -1;
+					}
+					if(this.y + this.r > canvas.height) {
+						h1.innerHTML = this.x +" -4- "+ this.y;
+						this.y = canvas.height - this.r;
+						this.vy *= -1;
+					}
+				},
+				draw: function() {
+					ctx.fillStyle = "#000";
+					ctx.beginPath();
+					ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+					ctx.fill();
+				}
+			}
+
+			function run() {
+				var loop = function() {
+					update();
+					draw();
+					window.requestAnimationFrame(loop, canvas);
+				}
+				window.requestAnimationFrame(loop, canvas);
+			}
+
+			function update() {
+				ball.update();
+			}
+
+			function draw() {
+				ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+				ball.draw();
+			}
+
+			window.ondevicemotion = function(event) {
+				var dx = event.accelerationIncludingGravity.x, 
+				dy = event.accelerationIncludingGravity.y;
+				ball.vx += dx*=-1;
+				ball.vy += dy;
+			};
+			run();
+		};
+
+		</script>
+	</body>
+	</html>
