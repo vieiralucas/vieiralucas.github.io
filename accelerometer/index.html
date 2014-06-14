@@ -21,15 +21,23 @@
 			canvas.width = 320;
 			canvas.height = 480;
 			var ctx = canvas.getContext("2d");
-			
-			var ball = {
-				x: canvas.width / 2,
-				y: canvas.height / 2,
-				r: 20,
-				vx : 0,
-				vy: 0,
 
-				update: function() {
+			var balls = [];
+
+			for (var i = 0; i < 10; i++) {
+				var x = Math.floor(Math.random()*canvas.width);
+				var y = Math.floor(Math.random()*canvas.height);
+				balls.push(new Ball(x, y));
+			}
+			
+			function Ball(x, y) {
+				this.x = x;
+				this.y = y;
+				this.r = 10;
+				this.vx  = 0;
+				this.vy = 0;
+
+				this.update = function() {
 					this.x += this.vx;
 					this.y += this.vy;
 					if(this.x - this.r < 0) {
@@ -54,13 +62,13 @@
 					if(this.vy < 2 && this.vy > -2) {
 						this.vy = 0
 					}
-				},
-				draw: function() {
+				};
+				this.draw = function() {
 					ctx.fillStyle = "#000";
 					ctx.beginPath();
 					ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
 					ctx.fill();
-				}
+				};
 			}
 
 			function run() {
@@ -73,20 +81,26 @@
 			}
 
 			function update() {
-				ball.update();
+				for (var i = 0; i < balls.length; i++) {
+					balls[i].update();
+				}
 			}
 
 			function draw() {
 				ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
 				ctx.fillRect(0, 0, canvas.width, canvas.height);
-				ball.draw();
+				for (var i = 0; i < balls.length; i++) {
+					balls[i].draw();
+				}
 			}
 
 			window.ondevicemotion = function(event) {
 				var dx = event.accelerationIncludingGravity.x, 
 				dy = event.accelerationIncludingGravity.y;
-				ball.vx += dx*=-1;
-				ball.vy += dy;
+				for (var i = 0; i < balls.length; i++) {
+					balls[i].vx += dx*=-1;
+					balls[i].vy += dy;
+				}
 			};
 			run();
 		};
