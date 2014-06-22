@@ -899,6 +899,16 @@
 			  canvas.mozRequestFullScreen();
 			} else if (canvas.webkitRequestFullscreen) {
 			  canvas.webkitRequestFullscreen();
+			} else {
+				return;
 			}
+			resizeCanvas();
+		}
+
+		function resizeCanvas() {
+			W = window.innerWidth;
+			H = window.innerHeight;
+			canvas.width = W;
+			canvas.height = H;
 		}
 	</script>
