@@ -10,10 +10,10 @@
 
 </div>
 <script type="text/javascript">
-	var canvas = document.getElementById("pong-canvas");
-	var running;
-	var isFullScreen = false;
-	var animation;
+var canvas = document.getElementById("pong-canvas");
+var running;
+var isFullScreen = false;
+var animation;
 //definidos no final do código
 document.addEventListener("keydown", keyPressed);
 document.addEventListener("keyup", keyReleased)
@@ -25,7 +25,7 @@ canvas.addEventListener("webkitfullscreenchange", fullscreenchange, false);
 canvas.addEventListener("msfullscreenchange", fullscreenchange, false);
 //0: menu; 1: player vs computer; 2: Player vs Wall; 3: Watch the Chaos
 var gameMode, frames, seconds;
-var W = window.innerWidth/2, H = window.innerHeight/2;
+var W = window.innerWidth/1.5, H = window.innerHeight/1.5;
 var upArrow = 38, downArrow = 40, wKey = 87, sKey = 83, enterKey = 13, escKey = 27;
 var blueScore, redScore, computerScore, coopScore, wallScore, chaosScore;
 var player = {};
