@@ -5,7 +5,7 @@ app.config(['$routeProvider', function($routeProvider) {
       when('/home', { templateUrl: 'partials/home.html', controller: 'HomeController'}).
       when('/projects', {templateUrl: 'partials/projects.html', controller: 'ProjectsController'}).
       when('/pong', {templateUrl: 'partials/pong/pong.html', controller: 'ProjectsController'}).
-      when('/15-puzzle' {templateUrl: 'partials/15-puzzle/15-puzzle.html', controller: 'ProjectsController'}).
+      when('/15-puzzle', {templateUrl: 'partials/15-puzzle/15-puzzle.html', controller: 'ProjectsController'}).
       otherwise({
         redirectTo: '/home'
       });
