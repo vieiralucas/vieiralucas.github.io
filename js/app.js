@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'firebase']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -12,27 +12,21 @@ app.config(['$routeProvider', function($routeProvider) {
   }
 ]);
 
-app.factory('projectsFactory', function(){
-  var factory = {};
-  factory.test = function() {
-    console.log('factory test');
-  };
-  return factory;
-});
-
-app.controller('NavController', function($scope, $location){
-	$scope.isActive = function(path) {
-    if($location.path() === path) {
+app.controller('NavController', ['$scope', '$location', function($scope, $location) {
+  $scope.isHomeActive = function() {
+    if($location.path() === '/home') {
       return true;
     }
     return false;
   }
-})
+}]);
 
-app.controller('HomeController', function(){
+app.controller('HomeController', ['$scope', function($scope) {
 	
-});
+}]);
 
-app.controller('ProjectsController',function(projectsFactory){
-  projectsFactory.test();
-});
+app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $firebase) {
+  var projectsRef = new Firebase('https://vieiralucas.firebaseio.com/projects');
+  $scope.projects = $firebase(projectsRef);
+  console.log($scope.projects);
+}]);
