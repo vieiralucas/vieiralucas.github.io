@@ -26,8 +26,24 @@ app.controller('HomeController', ['$scope', function($scope) {
 }]);
 
 app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $firebase) {
-  var projectsRef = new Firebase('https://vieiralucas.firebaseio.com/projects');
-  $scope.projects = $firebase(projectsRef);
-  console.log($scope.projects);
-  console.log(Object.keys($scope.projects));
+  var projectsRef = new Firebase('https://vieiralucas.firebaseio.com/projects'),
+      sync = $firebase(projectsRef),
+      syncArray = sync.$asArray(),
+      displayArray = [],
+      rowArray = [];
+  syncArray.$loaded().then(function() {
+    console.log(syncArray[0]);
+    for (var i = 0; i < syncArray.length; i++) {
+      rowArray.push(syncArray[i]);
+      if((i + 1) % 3 === 0) {
+        displayArray.push(rowArray);
+        rowArray = [];
+      }
+    }
+    if(rowArray.length > 0) {
+      displayArray.push(rowArray);
+    }
+    $scope.projects = displayArray;
+    console.log(displayArray[0]);
+  });
 }]);
