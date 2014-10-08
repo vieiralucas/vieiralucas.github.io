@@ -29,4 +29,5 @@ app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $f
   var projectsRef = new Firebase('https://vieiralucas.firebaseio.com/projects');
   $scope.projects = $firebase(projectsRef);
   console.log($scope.projects);
+  console.log(Object.keys($scope.projects));
 }]);
