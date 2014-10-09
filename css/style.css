@@ -2,7 +2,7 @@ footer {
     position: fixed;
     bottom: 0;
     height: 5em;
-    background-color: #EEE;
+    background-color: rgba(238, 238, 238, 0.92);
     width: 100%;
 }
 
