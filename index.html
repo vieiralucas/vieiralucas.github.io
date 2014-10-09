@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
+
 <head>
   <meta charset="UTF-8">
   <title>Lucas Vieira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <script src='https://cdn.firebase.com/js/client/1.1.0/firebase.js'></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -13,8 +16,9 @@
   <script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </head>
+
 <body>
-  <nav class="navbar navbar-inverse" role="navigation"  ng-controller="NavController">
+  <nav class="navbar navbar-inverse" role="navigation" ng-controller="NavController">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -27,12 +31,22 @@
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav">
-          <li ng-class="{ active: isHomeActive() }"><a href="#/home">HOME</a></li>
-          <li ng-class="{ active: !isHomeActive() }"><a href="#/projects">PROJECTS</a></li>
+          <li ng-class="{ active: isHomeActive() }"><a href="#/home">HOME</a>
+          </li>
+          <li ng-class="{ active: !isHomeActive() }"><a href="#/projects">PROJECTS</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div ng-view  ></div>
+  <div ng-view></div>
+  <footer class="container-fluid text-center">
+    <p class="contact">
+      <a href="mailto:vieiralucas4@gmail.com"><i class="fa fa-envelope"></i></a>
+      <a href="http://github.com/vieiralucas"><i class="fa fa-github"></i></a>
+      <a href="https://www.linkedin.com/pub/lucas-vieira/a4/1/1ba"><i class="fa fa-linkedin"></i></a>
+    </p>
+  </footer>
 </body>
+
 </html>

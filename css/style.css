@@ -1,0 +1,11 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 5em;
+    background-color: #EEE;
+    width: 100%;
+}
+
+.contact {
+    font-size: 3em;
+}
