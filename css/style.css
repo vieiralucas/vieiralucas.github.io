@@ -1,9 +1,13 @@
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 5em;
     background-color: #EEE;
     width: 100%;
+}
+
+.wrapper {
+    margin-bottom: 5em;
 }
 
 .contact {
