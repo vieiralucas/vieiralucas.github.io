@@ -22,13 +22,19 @@ app.controller('NavController', ['$scope', '$location', function($scope, $locati
 }]);
 
 app.controller('HomeController', ['$scope', '$firebase', function($scope, $firebase) {
-  var lolcommits = new Firebase('https://vieiralucas.firebaseio.com/lol-commits'),
-      imgs = $firebase(lolcommits).$asArray();
+  var commits = [];
 
-  imgs.$loaded().then(function() {
-    $scope.lolcommits = imgs;
-    imgs = shuffle(imgs);
-  });
+  $.getJSON('lolcommits.json', function(data) {
+    for(var i = 0; i < data.length; i++) {
+      for (lolcommit in data[i]) {
+        if (data[i].hasOwnProperty(lolcommit)) {
+          commits.push('data:image/jpg;base64, ' + data[i][lolcommit]);
+        }
+      }
+    }
+    $scope.lolcommits = commits;
+    $scope.$apply();
+  })  
 
   // THANKS TO STACKOVERFLOW
   function shuffle(a,b,c,d){
@@ -45,7 +51,6 @@ app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $f
       displayArray = [],
       rowArray = [];
   syncArray.$loaded().then(function() {
-    console.log(syncArray[0]);
     for (var i = 0; i < syncArray.length; i++) {
       rowArray.push(syncArray[i]);
       if((i + 1) % 3 === 0) {
@@ -57,6 +62,5 @@ app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $f
       displayArray.push(rowArray);
     }
     $scope.projects = displayArray;
-    console.log(displayArray[0]);
   });
 }]);
