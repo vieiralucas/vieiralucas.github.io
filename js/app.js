@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'firebase']);
+var app = angular.module('app', ['ngRoute', 'firebase', 'slick']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -21,8 +21,21 @@ app.controller('NavController', ['$scope', '$location', function($scope, $locati
   }
 }]);
 
-app.controller('HomeController', ['$scope', function($scope) {
-	
+app.controller('HomeController', ['$scope', '$firebase', function($scope, $firebase) {
+  var lolcommits = new Firebase('https://vieiralucas.firebaseio.com/lol-commits'),
+      imgs = $firebase(lolcommits).$asArray();
+
+  imgs.$loaded().then(function() {
+    $scope.lolcommits = imgs;
+    imgs = shuffle(imgs);
+  });
+
+  // THANKS TO STACKOVERFLOW
+  function shuffle(a,b,c,d){
+  //array,placeholder,placeholder,placeholder
+    c=a.length;while(c)b=Math.random()*(--c+1)|0,d=a[c],a[c]=a[b],a[b]=d;
+    return a;
+  }
 }]);
 
 app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $firebase) {
