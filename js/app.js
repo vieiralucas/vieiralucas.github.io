@@ -32,7 +32,7 @@ app.controller('HomeController', ['$scope', '$firebase', function($scope, $fireb
         }
       }
     }
-    $scope.lolcommits = commits;
+    $scope.lolcommits = shuffle(commits);
     $scope.$apply();
   })  
 
