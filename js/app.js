@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'firebase', 'slick']);
+var app = angular.module('app', ['ngRoute', 'slick']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -21,7 +21,7 @@ app.controller('NavController', ['$scope', '$location', function($scope, $locati
   }
 }]);
 
-app.controller('HomeController', ['$scope', '$firebase', function($scope, $firebase) {
+app.controller('HomeController', ['$scope', function($scope) {
   var commits = [];
 
   $.getJSON('lolcommits.json', function(data) {
@@ -44,15 +44,15 @@ app.controller('HomeController', ['$scope', '$firebase', function($scope, $fireb
   }
 }]);
 
-app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $firebase) {
-  var projectsRef = new Firebase('https://vieiralucas.firebaseio.com/projects'),
-      sync = $firebase(projectsRef),
-      syncArray = sync.$asArray(),
-      displayArray = [],
+app.controller('ProjectsController', ['$scope', function($scope) {
+  var displayArray = [],
       rowArray = [];
-  syncArray.$loaded().then(function() {
-    for (var i = 0; i < syncArray.length; i++) {
-      rowArray.push(syncArray[i]);
+console.log('test');
+  $.getJSON('projects.json', function(data) {
+    console.log(data);
+    console.log('312312test');
+    for(var i = 0; i < data.length; i++) {
+      rowArray.push(data[i]);
       if((i + 1) % 3 === 0) {
         displayArray.push(rowArray);
         rowArray = [];
@@ -62,5 +62,6 @@ app.controller('ProjectsController', ['$scope', '$firebase', function($scope, $f
       displayArray.push(rowArray);
     }
     $scope.projects = displayArray;
+    $scope.$apply();
   });
 }]);

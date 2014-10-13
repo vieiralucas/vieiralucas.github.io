@@ -1,0 +1,38 @@
+[
+    {
+      "title" : "Flappy Pong",
+      "description" : "Following the Flappy Bird hype, I decided to create my own version of this addictive game. So I mixed the original idea with the  classical pong game. The app is made using cocoonJS framework by Ludei which is an awesome way of converting your HTML5 canvas games into native apps for almost every mobile platform in the market.",
+      "href" : "https://play.google.com/store/apps/details?id=vieiralucas.com.flappypong",
+      "img" : "partials/flappy-pong/img.png"
+    },
+    {
+      "title" : "Learnyounode - Tradução PT-BR",
+      "description" : "Tradução do workshop Learnyounode da NodeSchool para português brasileiro.",
+      "href" : "https://github.com/lucasfcosta/learnyounode-pt-br",
+      "img" : "partials/learnyounodeptbr/img.png"
+    },
+    {
+      "title" : "15 Puzzle",
+      "description" : "The 15 puzzle consists in rearrange the squares in ascending order. To play click on the square you want to move. The game is made using HTML5 canvas and javascript.",
+      "href" : "#/15-puzzle",
+      "img" : "partials/15-puzzle/img.png"
+    },
+    {
+      "title" : "League Comparer",
+      "description" : "Simple League of Legends web application which compares two player's status. This project uses the official League of Legends API.",
+      "href" : "http://lucasfcosta.github.io/league-comparer/#/",
+      "img" : "partials/league-comparer/img.png"
+    },
+    {
+      "title" : "Pong Game",
+      "description" : "Simple Pong Game made with HTML5 canvas and javascript. Use the arrow keys to navigate the menu and the enter key to select a game mode. Inside the game the arrow keys control the paddle.",
+      "href" : "#/pong",
+      "img" : "partials/pong/img.png"
+    },
+    {
+      "title" : "Free Chat",
+      "description" : "A chat application built using AngularJS, firebase and twitter bootstrap.",
+      "href" : "https://vieiralucas-freechat.firebaseapp.com/",
+      "img" : "partials/free-chat/img.png"
+    }
+]
